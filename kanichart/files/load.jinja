@@ -1,0 +1,71 @@
+function () {
+    var symbols = {{ symbols  }};
+    channel_index = {};
+    channel_symbol = {};
+    function onOpen(){
+        console.log("on open");
+        var index = 0;
+        var channels = [];
+        for(var symbol of symbols){
+            var channel = 'rate/'+symbol;
+            channels.push(channel);
+            channel_index[channel] = index;
+            channel_symbol[channel] = symbol;
+            index += 1;
+        }
+        websocket.send(JSON.stringify(['SUBSCRIBE'].concat(channels)));
+    }
+    function onMessage(event){
+        var json_data = JSON.parse(event.data)["SUBSCRIBE"];
+        if(json_data[0] == "message"){
+            var channel = json_data[1];
+            var index = channel_index[channel];
+            var series = chart.series[index];
+            var data = series.data;
+            json_data = JSON.parse(json_data[2]);
+            if(json_data[0] == "bars"){
+                result = $.getJSON("http://127.0.0.1:7379/GET/bars-"+channel_symbol[channel], function(data){
+                    bars = JSON.parse(data["GET"]);
+                    series.update({
+                        data: bars
+                    }, true);
+                });
+            }
+            else if(json_data[0] == "tick"){
+                prices = json_data[1];
+                price = prices[0];
+                tick_line = chart.yAxis[index].plotLinesAndBands[0];
+                tick_line.options["value"] = prices[0];
+                tick_line.options["label"]["text"] = prices[0].toString();
+                chart.yAxis[index].update();
+
+                current = data[data.length-1];
+                if(price > current.high){
+                    current.high = price;
+                }
+                if(price < current.low){
+                    current.low = price;
+                }
+
+                data[data.length-1].update([
+                    current.x,
+                    current.open,
+                    current.high,
+                    current.low,
+                    price
+                ])
+            }
+        }        
+    }
+    function onError(event){
+        console.log(event.data)
+    }
+    
+    var chart = this;
+    var series = this.series[0];
+    url = "ws://localhost:7379/.json";
+    websocket = new ReconnectingWebSocket(url);
+    websocket.onopen = onOpen;
+    websocket.onmessage = onMessage;
+    websocket.onerror = onError;
+}
