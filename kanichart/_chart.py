@@ -13,8 +13,13 @@ import os, sys
 import requests
 import json
 import jinja2
+import pandas as pd
+import numpy as np
 from highcharts import Highstock
 from highcharts.highstock.highstock_helper import jsonp_loader
+
+def convert_pandas_datetime_to_float():
+    pass
 
 class CandlestickCharts(object):
     """View Chart"""
@@ -24,6 +29,23 @@ class CandlestickCharts(object):
             self.theme = f.read()
     
     def add_chart(self, symbol, data):
+        if isinstance(data, list):
+            pass
+        elif isinstance(data, pd.DataFrame):
+            try:
+                data = data[['Open', 'High', 'Low', 'Close']].copy()
+            except KeyError:
+                raise KeyError("data object must have ['Open', 'High', 'Low', 'Close']")
+            if isinstance(data.index, pd.DatetimeIndex):
+                data.index = data.index.values.astype(np.int64) // 10 ** 5
+            __import__('ipdb').set_trace()
+            index = data.index.values
+            values = data.values.tolist()
+            data = [[i, o, h, l, c] for i, (o, h, l, c) in zip(index, values)]
+            data
+        else:
+            raise RuntimeError("data parameter must be pandas DataFrame or list.")
+        
         self.symbols.append((symbol, data))
     
     def plot(self, title=False, chart_height=300, load_js=None, js_sources=[]):
@@ -142,6 +164,15 @@ class LineCharts(object):
             self.theme = f.read()
     
     def add_chart(self, symbol, data):
+        if isinstance(data, list):
+            pass
+        elif isinstance(data, pd.Series):
+            data = data.copy()
+            if isinstance(data.index, pd.DatetimeIndex):
+                data.index = data.index.values.astype(np.int64) // 10 ** 5
+            index = data.index.values
+            values = data.tolist()
+            data = list(zip(index, values))
         self.symbols.append((symbol, data))
     
     def plot(self, title=False, chart_height=300, load_js=None, js_sources=[]):

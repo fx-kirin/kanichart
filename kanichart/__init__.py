@@ -5,3 +5,4 @@ __author__ = 'Yoshiaki Ono <ono.kirin@gmail.com>'
 __all__ = []
 
 from _chart import CandlestickCharts
+from _chart import LineCharts
