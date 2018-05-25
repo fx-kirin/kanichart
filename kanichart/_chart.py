@@ -38,7 +38,6 @@ class CandlestickCharts(object):
                 raise KeyError("data object must have ['Open', 'High', 'Low', 'Close']")
             if isinstance(data.index, pd.DatetimeIndex):
                 data.index = data.index.values.astype(np.int64) // 10 ** 5
-            __import__('ipdb').set_trace()
             index = data.index.values
             values = data.values.tolist()
             data = [[i, o, h, l, c] for i, (o, h, l, c) in zip(index, values)]

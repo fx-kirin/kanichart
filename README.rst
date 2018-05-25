@@ -25,4 +25,4 @@ Licence
 Authors
 -------
 
-`kanichart` was written by `Yoshiaki Ono <ono.kirin@gmail.com>`.
+`kanichart` was written by fx-kirin.
