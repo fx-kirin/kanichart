@@ -10,7 +10,6 @@
 
 """
 import os, sys
-import requests
 import json
 import jinja2
 import pandas as pd
@@ -37,10 +36,10 @@ class CandlestickCharts(object):
             except KeyError:
                 raise KeyError("data object must have ['Open', 'High', 'Low', 'Close']")
             if isinstance(data.index, pd.DatetimeIndex):
-                data.index = data.index.values.astype(np.int64) // 10 ** 5
+                data.index = data.index.values.astype(np.int64) // 10 ** 6
             index = data.index.values
             values = data.values.tolist()
-            data = [[i, o, h, l, c] for i, (o, h, l, c) in zip(index, values)]
+            data = [[int(i), o, h, l, c] for i, (o, h, l, c) in zip(index, values)]
             data
         else:
             raise RuntimeError("data parameter must be pandas DataFrame or list.")
@@ -168,10 +167,10 @@ class LineCharts(object):
         elif isinstance(data, pd.Series):
             data = data.copy()
             if isinstance(data.index, pd.DatetimeIndex):
-                data.index = data.index.values.astype(np.int64) // 10 ** 5
+                data.index = data.index.values.astype(np.int64) // 10 ** 6
             index = data.index.values
             values = data.tolist()
-            data = list(zip(index, values))
+            data = [[int(i), v] for i, v in zip(index, values)]
         self.symbols.append((symbol, data))
     
     def plot(self, title=False, chart_height=300, load_js=None, js_sources=[]):

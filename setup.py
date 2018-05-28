@@ -17,7 +17,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     package_data={'kanichart': ['files/*']},
 
-    install_requires=['python-highcharts', 'pandas'],
+    install_requires=['python-highcharts', 'pandas', 'jinja2'],
 
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
