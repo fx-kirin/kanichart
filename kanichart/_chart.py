@@ -34,7 +34,10 @@ class CandlestickCharts(object):
             try:
                 data = data[['Open', 'High', 'Low', 'Close']].copy()
             except KeyError:
-                raise KeyError("data object must have ['Open', 'High', 'Low', 'Close']")
+                try:
+                    data = data[['open', 'high', 'low', 'close']].copy()
+                except KeyError:
+                    raise KeyError("data object must have ['Open', 'High', 'Low', 'Close']")
             if isinstance(data.index, pd.DatetimeIndex):
                 data.index = data.index.values.astype(np.int64) // 10 ** 6
             index = data.index.values

@@ -20,7 +20,6 @@ class Test(unittest.TestCase):
     def tearDown(self):
         pass
 
-
     def testName(self):
         start = datetime.datetime(2012, 1, 1)
         end = datetime.datetime(2017, 12, 31)

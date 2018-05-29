@@ -3,6 +3,10 @@
 # C extensions
 *.so
 
+# 
+# 
+pypi
+
 # Packages
 *.egg
 *.egg-info
