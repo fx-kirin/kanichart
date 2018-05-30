@@ -22,7 +22,7 @@ def convert_pandas_datetime_to_float():
 
 class CandlestickCharts(object):
     """View Chart"""
-    def __init__(self, width=1100):
+    def __init__(self):
         self.symbols = []
         with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "files/theme.js")) as f:
             self.theme = f.read()
@@ -49,9 +49,9 @@ class CandlestickCharts(object):
         
         self.symbols.append((symbol, data))
     
-    def plot(self, title=False, chart_height=300, load_js=None, js_sources=[]):
-        height = (chart_height + 50)*len(self.symbols) - 50 + 200
-        H = Highstock(width=1100, height=height)
+    def plot(self, title=False, width=600, height=300, load_js=None, js_sources=[]):
+        chart_height = (height + 50)*len(self.symbols) - 50 + 200
+        H = Highstock(width=width, height=chart_height)
         groupingUnits = [
             ['hour', [60]], 
         ]
@@ -141,7 +141,7 @@ class CandlestickCharts(object):
                         'text': 'OHLC'
                     },
                     'top' : '%dpx'%(current_y),
-                    'height': '%dpx'%(chart_height),
+                    'height': '%dpx'%(height),
                     'lineWidth': 2,
                     'offset': 0,
             })
@@ -149,7 +149,7 @@ class CandlestickCharts(object):
             H.add_data_set(data, 'candlestick', symbol, yAxis = idx, dataGrouping = {
                             }
             )
-            current_y += chart_height + 50
+            current_y += height + 50
             
         H.set_dict_options(options)
         H.add_JSscript(self.theme, "head")
@@ -176,9 +176,9 @@ class LineCharts(object):
             data = [[int(i), v] for i, v in zip(index, values)]
         self.symbols.append((symbol, data))
     
-    def plot(self, title=False, chart_height=300, load_js=None, js_sources=[]):
-        height = (chart_height + 50)*1 - 50 + 200
-        H = Highstock(width=1100, height=height)
+    def plot(self, title=False, width=600, height=300, load_js=None, js_sources=[]):
+        chart_height = (height + 50)*1 - 50 + 200
+        H = Highstock(width=width, height=chart_height)
         groupingUnits = [
             ['hour', [60]], 
         ]
@@ -267,14 +267,14 @@ class LineCharts(object):
                         'x': -3
                     },
                     'title': {
-                        'text': 'OHLC'
+                        'text': 'y'
                     },
                     'lineWidth': 2,
                     'offset': 0,
             })
 
             H.add_data_set(data, 'line', symbol, dataGrouping = {})
-            current_y += chart_height + 50
+            current_y += height + 50
             
         H.set_dict_options(options)
         H.add_JSscript(self.theme, "head")
