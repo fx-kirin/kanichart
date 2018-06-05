@@ -192,7 +192,7 @@ class StockChart(object):
             elif chart_type == 'line':
                 H.add_data_set(data, chart_type, symbol, yAxis = idx, dataGrouping = {})
             elif chart_type == 'scatter':
-                H.add_data_set(data, chart_type, symbol, yAxis = idx, dataGrouping = {})
+                H.add_data_set(data, chart_type, symbol, yAxis = idx, dataGrouping = {}, turboThreshold=0)
             
         H.set_dict_options(options)
         H.add_JSscript(self.theme, "head")
@@ -299,6 +299,9 @@ class CandlestickCharts(object):
                 }
             },
             
+            'legend': {
+                'enabled': True,
+            },
             'yAxis': []
         }
         if title:
@@ -421,6 +424,9 @@ class LineCharts(object):
                 'animation': False,
             },
             
+            'legend': {
+                'enabled': True,
+            },
             'yAxis': [],
             
             'title': {
