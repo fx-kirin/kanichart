@@ -6,3 +6,4 @@ __all__ = []
 
 from kanichart._chart import CandlestickCharts
 from kanichart._chart import LineCharts
+from kanichart._chart import StockChart
