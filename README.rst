@@ -12,6 +12,7 @@ Usage
 
 Installation
 ------------
+pip install kanichart
 
 Requirements
 ^^^^^^^^^^^^
