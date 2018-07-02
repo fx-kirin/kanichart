@@ -7,6 +7,8 @@ kanichart
 
 Kan i(簡易) chart. Easy plotting library.
 
+.. image:: https://raw.githubusercontent.com/fx-kirin/kanichart/master/interactive_chart.gif
+
 Usage
 -----
 Just see the Jupyter notebook example.
