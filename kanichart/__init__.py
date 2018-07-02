@@ -4,6 +4,6 @@ __version__ = '0.1.2'
 __author__ = 'fx-kirin'
 __all__ = []
 
-from . _chart import CandlestickCharts
-from . _chart import LineCharts
-from . _chart import StockChart
+from ._chart import CandlestickCharts
+from ._chart import LineCharts
+from ._chart import StockChart
