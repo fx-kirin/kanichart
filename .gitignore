@@ -1,5 +1,6 @@
 *.py[cod]
 .ipynb_checkpoints
+.python-version
 
 # C extensions
 *.so
