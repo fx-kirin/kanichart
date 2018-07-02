@@ -9,19 +9,17 @@ Kan i(簡易) chart. Easy plotting library.
 
 Usage
 -----
+Just see the Jupyter notebook example.
+
+http://nbviewer.jupyter.org/github/fx-kirin/kanichart/blob/master/kanicharts.ipynb
 
 Installation
 ------------
 pip install kanichart
 
-Requirements
-^^^^^^^^^^^^
-
-Compatibility
--------------
-
 Licence
 -------
+MIT
 
 Authors
 -------
