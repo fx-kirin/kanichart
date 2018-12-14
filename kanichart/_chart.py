@@ -61,6 +61,12 @@ class StockChart(object):
     def plot(self, title=False, width=600, height=300, load_js=None, js_sources=[]):
         chart_height = (height + 50)*self.number_of_candlestick_charts - 50 + 200
         H = Highstock(width=width, height=chart_height)
+        H.JSsource = [
+                'https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+                'https://code.highcharts.com/stock/6/highstock.js',
+                'https://code.highcharts.com/stock/6/modules/exporting.js',
+                'https://code.highcharts.com/6/highcharts-more.js',
+            ]
         groupingUnits = [
             ['hour', [60]], 
         ]
@@ -232,6 +238,12 @@ class CandlestickCharts(object):
     def plot(self, title=False, width=600, height=300, load_js=None, js_sources=[]):
         chart_height = (height + 50)*len(self.symbols) - 50 + 200
         H = Highstock(width=width, height=chart_height)
+        H.JSsource = [
+                'https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+                'https://code.highcharts.com/stock/6/highstock.js',
+                'https://code.highcharts.com/stock/6/modules/exporting.js',
+                'https://code.highcharts.com/6/highcharts-more.js',
+            ]
         groupingUnits = [
             ['hour', [60]], 
         ]
@@ -363,6 +375,12 @@ class LineCharts(object):
     def plot(self, title=False, width=600, height=300, load_js=None, js_sources=[]):
         chart_height = (height + 50)*1 - 50 + 200
         H = Highstock(width=width, height=chart_height)
+        H.JSsource = [
+                'https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+                'https://code.highcharts.com/stock/6/highstock.js',
+                'https://code.highcharts.com/stock/6/modules/exporting.js',
+                'https://code.highcharts.com/6/highcharts-more.js',
+            ]
         groupingUnits = [
             ['hour', [60]], 
         ]
