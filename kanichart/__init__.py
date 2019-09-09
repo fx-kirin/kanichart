@@ -1,6 +1,6 @@
 """kanichart - Kan i chart. Easy plotting library."""
 
-__version__ = '0.1.2'
+__version__ = '0.1.5'
 __author__ = 'fx-kirin'
 __all__ = []
 
