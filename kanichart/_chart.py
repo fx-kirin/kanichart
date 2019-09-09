@@ -15,7 +15,7 @@ import jinja2
 import numpy as np
 import pandas as pd
 
-from highcharts import Highstock
+from kani_highcharts import Highstock
 
 
 def convert_pandas_datetime_to_float():
