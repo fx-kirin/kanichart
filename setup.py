@@ -5,7 +5,7 @@ import setuptools
 
 setuptools.setup(
     name="kanichart",
-    version="0.1.6",
+    version="0.1.7",
     url="https://github.com/fx-kirin/kanichart",
 
     author="Yoshiaki Ono",
@@ -17,7 +17,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     package_data={'kanichart': ['files/*']},
 
-    install_requires=['python-highcharts', 'pandas', 'jinja2'],
+    install_requires=['kan_highcharts', 'pandas', 'jinja2'],
 
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
