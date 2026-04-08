@@ -73,9 +73,9 @@ class StockChart(object):
         H = Highstock(width=width, height=chart_height)
         H.JSsource = [
             'https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
-            'https://code.highcharts.com/stock/6/highstock.js',
-            'https://code.highcharts.com/stock/6/modules/exporting.js',
-            'https://code.highcharts.com/6/highcharts-more.js',
+            'https://unpkg.com/highcharts@6.2.0/highstock.js',
+            'https://unpkg.com/highcharts@6.2.0/modules/exporting.js',
+            'https://unpkg.com/highcharts@6.2.0/highcharts-more.js'
         ]
         groupingUnits = [
             ['hour', [60]],

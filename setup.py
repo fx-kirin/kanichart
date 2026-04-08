@@ -5,7 +5,7 @@ import setuptools
 
 setuptools.setup(
     name="kanichart",
-    version="0.2.8",
+    version="0.3.0",
     url="https://github.com/fx-kirin/kanichart",
 
     author="Yoshiaki Ono",
