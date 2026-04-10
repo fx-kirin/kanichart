@@ -112,9 +112,12 @@ class StockChart(object):
                         'type': 'second',
                         'count': 10,
                         'text': '10s'
+                    }, {
+                        'type': 'all',
+                        'text': 'All'
                     }
                 ],
-                'selected': 4,
+                'selected': 7,
                 'inputEnabled': False
             },
 
