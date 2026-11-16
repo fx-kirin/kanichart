@@ -43,7 +43,7 @@ class StockChart(object):
                 except KeyError:
                     raise KeyError("data object must have ['Open', 'High', 'Low', 'Close']")
             if isinstance(data.index, pd.DatetimeIndex):
-                data.index = data.index.values.astype(np.int64) // 10 ** 6
+                data.index = data.index.values.astype(np.int64) // 10 ** 3
             index = data.index.values
             values = data.values.tolist()
             data = [[int(i), o, h, l, c] for i, (o, h, l, c) in zip(index, values)]
